@@ -39,7 +39,7 @@ def next_from_same_digits(number):
 		if next_ending != None:
 			digits[0:len(part)] = part
 			return to_number(digits)
-	return -1
+	return number
 		
 
 def brute_force(number):
@@ -55,8 +55,8 @@ def brute_force(number):
 	numbers = list(numbers)
 	numbers.sort()
 	index = numbers.index(number)
-	if index >= len(numbers):
-		return numbers[index]
+	if index + 1 >= len(numbers):
+		return number
 	else:
 		return numbers[index + 1]
 		
@@ -71,7 +71,7 @@ class Test(unittest.TestCase):
 			self.assertEqual(to_digits(k), v)
 
 	def test_next_from_same_digits(self):
-		numbers = [12, 123, 3244, 234, 3527563, 2234325, 652342831]
+		numbers = [11, 12, 123, 3244, 234, 3527563, 2234325, 652342831, 89765432, 987654321] #987654321 is a worst case
 		for number in numbers:
 			start = time()
 			expected = brute_force(number)
